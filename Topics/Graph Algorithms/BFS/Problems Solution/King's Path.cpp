@@ -13,11 +13,9 @@ int dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};
 
 map<pair<int,int>,bool>allowed;
 map<pair<int, int>, int> depth;
-map<pair<int,int>,bool>vis;
 void bfs(int x,int y)
 {
     depth[{x,y}]=0;
-    vis[{x, y}] = true;
     queue<pair<int,int>> q;
     q.push({x,y});
     while (!q.empty())
@@ -28,10 +26,9 @@ void bfs(int x,int y)
         {
             int nx = x + dx[i];
             int ny = y + dy[i];
-            if (allowed[{nx, ny}]&&!vis[{nx,ny}]) {
+            if(!depth.count(make_pair(nx,ny))&&allowed[{nx,ny}]){
                 depth[{nx, ny}] = depth[{x, y}] + 1;
                 q.push({nx,ny});
-                vis[{nx,ny}]=true;
             }
         }
     }
@@ -52,7 +49,7 @@ int main() {
     }
 
     bfs(x0,y0);
-    if(vis[{x1,y1}]){
+    if(depth.count(make_pair(x1,y1))){
         cout<<depth[{x1,y1}];
     }
     else{
@@ -62,4 +59,6 @@ int main() {
 
     return 0;
 }
+
+
 
