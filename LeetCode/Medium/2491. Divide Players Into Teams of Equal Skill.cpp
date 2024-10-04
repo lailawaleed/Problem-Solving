@@ -1,4 +1,5 @@
 //Link : https://leetcode.com/problems/divide-players-into-teams-of-equal-skill/description/
+//Complexity : n(log(n))
 class Solution {
 public:
     long long dividePlayers(vector<int>& skill) {
